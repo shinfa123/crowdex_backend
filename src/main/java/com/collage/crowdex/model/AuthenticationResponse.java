@@ -8,21 +8,27 @@ public class AuthenticationResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 	private final String jwt;
-	private boolean isAdmin;
+	private int userRole;
 	private Integer userId;
 
     public String getJwt() {
         return jwt;
     }
 
-	public boolean isAdmin() {
-		return isAdmin;
+	
+	
+	public int getUserRole() {
+		return userRole;
 	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+
+
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
-	
+
+
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -31,10 +37,10 @@ public class AuthenticationResponse implements Serializable {
 		this.userId = userId;
 	}
 
-	public AuthenticationResponse(String jwt, boolean isAdmin, Integer userId) {
+	public AuthenticationResponse(String jwt, int userRole, Integer userId) {
 		super();
 		this.jwt = jwt;
-		this.isAdmin = isAdmin;
+		this.userRole = userRole; 
 		this.userId = userId;
 	}
     

@@ -27,6 +27,8 @@ public class Event {
 	    private LocalTime startTime;
 
 	    private LocalTime endTime;
+	    
+	    private Integer actualCrowd;
 
 	    private Integer expectedCrowd;
 
@@ -127,6 +129,14 @@ public class Event {
 
 		public void setStatus(EventStatus status) {
 			this.status = status;
+		}
+
+		public Integer getActualCrowd() {
+			return actualCrowd;
+		}
+
+		public void setActualCrowd(Integer actualCrowd) {
+			this.actualCrowd = actualCrowd;
 		}
 
 }

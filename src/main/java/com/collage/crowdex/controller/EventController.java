@@ -38,5 +38,7 @@ public class EventController {
     public List<Event> getEventsByStatus(@PathVariable EventStatus status) {
         return eventService.getEventsByStatus(status);
     }
+    
+    
  
 }

@@ -17,6 +17,9 @@ public class EventService {
 	private EventDao eventDao;
 	
     public Event createEvent(Event event) {
+    	if(event.getActualCrowd()!=null) {
+    		event.setExpectedCrowd(event.getActualCrowd());
+    	}
         return eventDao.save(event);
     }
     public ArrayList<Event> getAllEvents() {
