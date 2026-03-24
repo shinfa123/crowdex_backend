@@ -46,7 +46,7 @@ public class VenueService {
         venueDao.save(venue);
     }
 
-    public void deleteVenue(Long id) {
+    public void deleteVenue(Long id) throws Exception{
         venueDao.deleteById(id);
     }
 }

@@ -37,7 +37,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public ArrayList<MyUser> getAllUsers() {
-		return (ArrayList<MyUser>) userDao.findAll();
+		ArrayList<MyUser> userList = (ArrayList<MyUser>) userDao.findAll();
+		userList.removeIf(user -> user.getRole() == 1);
+		 return userList;
 	}
 
 	public MyUser getUserById(String userName) {
@@ -57,4 +59,10 @@ public class UserService implements UserDetailsService {
         }
         return null;
     }
+	
+	  public void deleteUser(Integer id) {
+	        MyUser user = userDao.findById(id)
+	                .orElseThrow(() -> new RuntimeException("User not found"));
+	        userDao.delete(user);
+	    }
 }

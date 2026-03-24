@@ -20,7 +20,6 @@ public class MyUser {
 	public String email;
 	public String userName;
 	public String password;
-	public boolean isAdmin;
 	public boolean isActive;
 	public int getId() {
 		return id;
@@ -75,12 +74,6 @@ public class MyUser {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 	public boolean isActive() {
 		return isActive;

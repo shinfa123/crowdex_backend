@@ -2,7 +2,11 @@ package com.collage.crowdex.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -11,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Event {
@@ -43,6 +48,11 @@ public class Event {
 	    @Enumerated(EnumType.STRING)
 	    private EventStatus status; // PLANNED, LIVE, COMPLETED
 
+	    @ElementCollection
+	    @CollectionTable(name = "event_user_ids", joinColumns = @JoinColumn(name = "event_id"))
+	    @Column(name = "user_id")
+	    private List<Integer> userIds;
+	    
 		public Long getId() {
 			return id;
 		}
@@ -138,5 +148,14 @@ public class Event {
 		public void setActualCrowd(Integer actualCrowd) {
 			this.actualCrowd = actualCrowd;
 		}
+
+		public List<Integer> getUserIds() {
+			return userIds;
+		}
+
+		public void setUserIds(List<Integer> userIds) {
+			this.userIds = userIds;
+		}
+ 
 
 }

@@ -2,6 +2,7 @@ package com.collage.crowdex.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,28 @@ public class EventService {
     	}
         return eventDao.save(event);
     }
-    public ArrayList<Event> getAllEvents() {
-    	return (ArrayList<Event>) eventDao.findAll();
-	}
-    public List<Event> getEventsByStatus(EventStatus status) {
-        return eventDao.findByStatus(status);
+    public List<Event> getAllEvents(Integer userId) {
+
+        List<Event> events = eventDao.findAll();
+        if (userId == 1) {
+            return events;
+        }
+        return events.stream().filter(event -> event.getUserIds() != null && !event.getUserIds().isEmpty())
+                .filter(event ->event.getUserIds().contains(userId))
+                .collect(Collectors.toList());
+    }
+    public List<Event> getEventsByStatus(Integer userId,EventStatus status) {
+        
+        List<Event> events = eventDao.findByStatus(status);
+        if (userId == 1) {
+            return events;
+        }
+        return events.stream().filter(event -> event.getUserIds() != null && !event.getUserIds().isEmpty())
+                .filter(event ->event.getUserIds().contains(userId))
+                .collect(Collectors.toList());
+    }
+    
+    public void deleteEvent(Long eventId) {
+        eventDao.deleteById(eventId);
     }
 }

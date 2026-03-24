@@ -55,9 +55,5 @@ public class VenueController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVenue(@PathVariable Long id) {
-        venueService.deleteVenue(id);
-        return ResponseEntity.noContent().build();
-    }
+  
 }
