@@ -2,6 +2,7 @@ package com.collage.crowdex.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,14 @@ public class EventService {
     
     public void deleteEvent(Long eventId) {
         eventDao.deleteById(eventId);
+    }
+    
+	public Event getEventById(Long id) {
+        Optional<Event> optionalEvent = eventDao.findById(id);
+        if (optionalEvent.isPresent()) {
+        	Event event = optionalEvent.get();
+            return event;
+        }
+        return null;
     }
 }
